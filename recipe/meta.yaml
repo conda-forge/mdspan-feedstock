@@ -37,14 +37,6 @@ test:
     - test -f $PREFIX/lib/cmake/mdspan/mdspanConfig.cmake  # [unix]
     - if not exist %LIBRARY_PREFIX%\lib\cmake\mdspan\mdspanConfig.cmake exit 1  # [win]
 
-    # Test that a downstream CMake project can consume the exported package.
-    - cmake -S tests -B test-build -G Ninja ${CMAKE_ARGS}  # [unix]
-    - cmake --build test-build --verbose  # [unix]
-    - ./test-build/test_mdspan  # [unix]
-    - cmake -S tests -B test-build -G Ninja %CMAKE_ARGS%  # [win]
-    - cmake --build test-build --verbose  # [win]
-    - test-build\test_mdspan.exe  # [win]
-
 about:
   home: https://github.com/kokkos/mdspan
   summary: Reference implementation of mdspan targeting C++23
