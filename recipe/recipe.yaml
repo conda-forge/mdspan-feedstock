@@ -1,0 +1,68 @@
+context:
+  name: mdspan
+  version: "0.6.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kokkos/${{ name }}/archive/refs/tags/mdspan-${{ version }}.tar.gz
+  sha256: 79f94d7f692cbabfbaff6cd0d3434704435c853ee5087b182965fa929a48a592
+
+build:
+  number: 1
+  script:
+    - if: win
+      then: call "%RECIPE_DIR%\\build.bat"
+    - if: unix
+      then: bash "${RECIPE_DIR}/build.sh"
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - ninja
+    - make
+
+tests:
+  - requirements:
+      run:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+    files:
+      recipe:
+        - run_test.bat
+        - run_test.sh
+        - tests/
+    script:
+      - if: unix
+        then:
+          - test -f "${PREFIX}/include/experimental/mdspan"
+          - test -f "${PREFIX}/lib/cmake/mdspan/mdspanConfig.cmake"
+          - bash "run_test.sh"
+      - if: win
+        then:
+          - if not exist "%LIBRARY_INC%\\experimental\\mdspan" exit 1
+          - if not exist "%LIBRARY_PREFIX%\\lib\\cmake\\mdspan\\mdspanConfig.cmake" exit 1
+          - call "run_test.bat"
+
+about:
+  homepage: https://github.com/kokkos/mdspan
+  repository: https://github.com/kokkos/mdspan
+  documentation: https://github.com/kokkos/mdspan
+  summary: Reference implementation of mdspan targeting C++23
+  description: |
+    mdspan is a reference implementation of the C++23 mdspan feature.
+    It provides a non-owning multidimensional array view for use with
+    modern C++ programs. This is a header-only library that provides
+    efficient and flexible indexing of multidimensional data.
+  license: Apache-2.0 WITH LLVM-exception
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jeongseok-meta
