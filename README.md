@@ -95,14 +95,14 @@ Current release info
 Installing mdspan
 =================
 
-Installing `mdspan` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `mdspan` from the `conda-forge/label/mdspan_dev` channel can be achieved by adding `conda-forge/label/mdspan_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/mdspan_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `mdspan` can be installed with `conda`:
+Once the `conda-forge/label/mdspan_dev` channel has been enabled, `mdspan` can be installed with `conda`:
 
 ```
 conda install mdspan
@@ -117,26 +117,26 @@ mamba install mdspan
 It is possible to list all of the versions of `mdspan` available on your platform with `conda`:
 
 ```
-conda search mdspan --channel conda-forge
+conda search mdspan --channel conda-forge/label/mdspan_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search mdspan --channel conda-forge
+mamba search mdspan --channel conda-forge/label/mdspan_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search mdspan --channel conda-forge
+mamba repoquery search mdspan --channel conda-forge/label/mdspan_dev
 
 # List packages depending on `mdspan`:
-mamba repoquery whoneeds mdspan --channel conda-forge
+mamba repoquery whoneeds mdspan --channel conda-forge/label/mdspan_dev
 
 # List dependencies of `mdspan`:
-mamba repoquery depends mdspan --channel conda-forge
+mamba repoquery depends mdspan --channel conda-forge/label/mdspan_dev
 ```
 
 
