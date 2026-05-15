@@ -18,7 +18,6 @@ It provides a non-owning multidimensional array view for use with
 modern C++ programs. This is a header-only library that provides
 efficient and flexible indexing of multidimensional data.
 
-
 Current build status
 ====================
 
