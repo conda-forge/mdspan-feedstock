@@ -12,3 +12,4 @@ cmake --build .
 
 # Run the test program
 ./test_mdspan
+./test_kokkos_mdspan

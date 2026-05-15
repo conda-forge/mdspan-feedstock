@@ -15,3 +15,6 @@ if errorlevel 1 exit 1
 :: Run the test program
 test_mdspan.exe
 if errorlevel 1 exit 1
+
+test_kokkos_mdspan.exe
+if errorlevel 1 exit 1
