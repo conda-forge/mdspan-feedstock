@@ -7,6 +7,8 @@ conda_build_tool: rattler-build
 conda_install_tool: pixi
 conda_forge_output_validation: true
 bot:
+  abi_migration_branches:
+    - v0.6.0
   automerge: true
 provider:
   linux_aarch64: default

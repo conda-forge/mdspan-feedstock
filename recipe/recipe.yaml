@@ -1,17 +1,18 @@
 context:
   name: mdspan
-  version: "0.6.0"
+  version: "0.6.1.dev20260223"
+  commit: 80fc772eb812b45097c28fc0a46d8ff006138d69
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/kokkos/${{ name }}/archive/refs/tags/mdspan-${{ version }}.tar.gz
-  sha256: 79f94d7f692cbabfbaff6cd0d3434704435c853ee5087b182965fa929a48a592
+  url: https://github.com/kokkos/${{ name }}/archive/${{ commit }}.tar.gz
+  sha256: f39054c5dda52ff8b7be98165ec191f5fb1c0325239e0535619ad7050de14bb3
 
 build:
-  number: 1
+  number: 0
   script:
     - if: win
       then: call "%RECIPE_DIR%\\build.bat"
@@ -42,11 +43,13 @@ tests:
       - if: unix
         then:
           - test -f "${PREFIX}/include/experimental/mdspan"
+          - test -f "${PREFIX}/include/mdspan/mdspan.hpp"
           - test -f "${PREFIX}/lib/cmake/mdspan/mdspanConfig.cmake"
           - bash "run_test.sh"
       - if: win
         then:
           - if not exist "%LIBRARY_INC%\\experimental\\mdspan" exit 1
+          - if not exist "%LIBRARY_INC%\\mdspan\\mdspan.hpp" exit 1
           - if not exist "%LIBRARY_PREFIX%\\lib\\cmake\\mdspan\\mdspanConfig.cmake" exit 1
           - call "run_test.bat"
 
