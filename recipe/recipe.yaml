@@ -1,6 +1,6 @@
 context:
   name: mdspan
-  version: "0.6.1.dev20260223"
+  version: "5.3.0"
   commit: 80fc772eb812b45097c28fc0a46d8ff006138d69
 
 package:
@@ -12,7 +12,7 @@ source:
   sha256: f39054c5dda52ff8b7be98165ec191f5fb1c0325239e0535619ad7050de14bb3
 
 build:
-  number: 1
+  number: 0
   script:
     - if: win
       then: call "%RECIPE_DIR%\\build.bat"
